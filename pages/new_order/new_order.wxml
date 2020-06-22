@@ -1,0 +1,179 @@
+<import src="../../template/card_style_template.wxml" />
+<wxs src="../../wxs/SkuTools.wxs" module="skuTools" />
+
+<view class='container'>
+  <scroll-view class='scroll-list-block' scroll-y='ture'>
+    <view class='address-block' catchtap='addressClick' wx:if='{{defExpIndex==0}}'>
+      <view class='selected-addr' wx:if="{{expressInfo == null}}">
+        <image class='location-icon' src='../../images/location.png'></image>
+        <text class='h4'>添加地址</text>
+      </view>
+      <view class='address-info' wx:else>
+        <view class='left'>
+          <image class='location-icon' src='../../images/location.png' mode='aspectFit'></image>
+          <view class='middle'>
+            <view class='top'>
+              <view class='left'>
+                <text class='name-title express-info-text'>收货人:</text>
+                <text class='name express-info-text'>{{expressInfo.userName}}</text>
+              </view>
+              <view class='right'>
+                <text class='express-info-text'>{{expressInfo.userTel}}</text>
+              </view>
+            </view>
+            <view class='bottom'>
+              <text class='addr-title express-info-text'>收货地址:</text>
+              <text class='addr-detail express-info-text'>{{expressInfo.area+expressInfo.addressName}}</text>
+            </view>
+          </view>
+        </view>
+        <view class='right'>
+          <image src='../../images/arrow_right.png' mode='aspectFit'></image>
+        </view>
+      </view>
+    </view>
+    <view class='body-block'>
+      <view class='goods-list-block'>
+        <view class='list-content'>
+          <block wx:for='{{orderInfo.goodsList}}' wx:for-item='goods' wx:key=''>
+            <view class='goods'>
+              <template is='OrderGoodsCardTemplate' data='{{...tools.goodsCardAdapter(goods) }}'></template>
+            </view>
+          </block>
+        </view>
+      </view>
+      <picker value='{{defExpIndex}}' range='{{expressItem}}' bindchange='expressChange'>
+        <view class='logistics-block'>
+          <template is='PaymentSelectedItemTemplate' data='{{...{title:"配送方式",desc:expressItem[defExpIndex]} }}'></template>
+        </view>
+      </picker>
+      <view class='discount-block' catchtap='discountClick'>
+        <template is='PaymentSelectedItemTemplate' data='{{...{title:"优惠券",desc:couponAmount==0?"":("￥"+couponAmount/100.0)} }}'></template>
+      </view>
+      <!--
+      <view class='connect-person-block' catchtap='connectPersonClick' wx:if='{{defExpIndex==0}}'>
+        <template is='PaymentSelectedItemTemplate' data='{{...{title:"买家电话",desc:connectAddress.userTel} }}'></template>
+      </view>
+      -->
+      <view class='leave-message-block'>
+        <view class='content'>
+          <text class='h3'>卡片祝福：</text>
+          <input class='h3' placeholder="(选填)" bindinput='cardMessageInput'></input>
+        </view>
+      </view>
+      <view class='leave-message-block' wx:if='{{defExpIndex==0}}'>
+        <view class='content'>
+          <text class='h3'>买家电话：</text>
+          <input class='h3' placeholder="(选填)" type='number' bindinput='connectTelInput'></input>
+        </view>
+      </view>
+      <view class='leave-message-block'>
+        <view class='content'>
+          <text class='h3'>买家留言：</text>
+          <input class='h3' placeholder="(选填)" bindinput='leaveMessageInput'></input>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+  <view class='footer-block'>
+    <view class='price'>
+      <text class='tips h5'>合计金额:</text>
+      <text class='total-price h4'>￥{{tools.orderSum(orderInfo,couponAmount)}}</text>
+    </view>
+    <view class='enter' catchtap='submitOrderClick'>
+      <text class='h3'>去支付</text>
+    </view>
+  </view>
+
+
+  <view class='selected-pan-block' wx:if='{{isShowCoupon==true}}' catchtouchmove='handleScrollMove'>
+    <view class='shadow-pan-block' catchtap='selectedPanCloseClick'></view>
+    <view class='coupon-pan-block' wx:if='{{isShowCoupon==true}}'>
+      <view class='header'>
+        <text class='cancel h4' catchtap='couponCancelClick'>取消</text>
+        <text class='confirm h4' catchtap='couponConfirmClick'>确定</text>
+      </view>
+      <scroll-view scroll-y='true'>
+        <block wx:for='{{currentCouponList}}' wx:key=''>
+          <view class='coupon-content' data-data='{{item}}' catchtap='couponClick'>
+            <template is="CouponTemplate" data="{{...{type:item.type,status:item.status,price:item.couponPrice,desc:item.couponName,rule:item.source,endtime:item.endTime,selected:item.selected,enableEdite:'true'} }}"></template>
+          </view>
+        </block>
+      </scroll-view>
+    </view>
+  </view>
+</view>
+
+<!--   -->
+<template name="PaymentSelectedItemTemplate">
+  <view class='payment-selected-item-template-block'>
+    <text class='title h3'>{{title}}</text>
+    <view class='right'>
+      <text class='desc h3'>{{desc}}</text>
+      <image class='arrow' src='../../images/arrow_right.png'></image>
+    </view>
+  </view>
+</template>
+
+<wxs module="tools">
+  var SkuTools = require("../../wxs/SkuTools.wxs");
+
+  var goodsSkuText = function(sku) {
+    var str = '';
+    for (var i = 0; i < (sku.length); i++) {
+      var tags = sku[i].group;
+      var selected = tags[0];
+      str = str + selected.skuDesc + '|';
+    }
+    if (str.length > 0) {
+      str = str.substring(0, str.length - 1);
+    }
+    return str;
+  };
+
+  var skuPriceSum = function(goodsInfo) {
+    var sum = goodsInfo.goodsRealPrice;
+    var sku = goodsInfo.sku;
+    for (var i = 0; i < sku.length; i++) {
+      var tags = sku[i].group;
+      sum += tags[0].skuRealPrice;
+    }
+    return sum;
+  };
+
+  var goodsCardAdapter = function(goodsInfo) {
+    goods = {
+      imageUrl: SkuTools.skuImageAdapter(goodsInfo.goodsImgsArr[0],goodsInfo.sku),
+      title: goodsInfo.goodsName,
+      subtitle: goodsSkuText(goodsInfo.sku),
+      number: goodsInfo.number,
+      price: skuPriceSum(goodsInfo) / 100.0
+    }
+    return goods;
+  };
+
+  var orderSum = function(orderInfo, couponAmount) {
+    if('undefined' != (typeof orderInfo.price) && orderInfo.price != null && orderInfo.price >= 0){
+      return orderInfo.price/100.0;
+    }
+    var orderSum = 0;
+    var goodsList = orderInfo.goodsList;
+    for (var i = 0; i < goodsList.length; i++) {
+      var goods = goodsList[i];
+      var sumPrice = skuPriceSum(goods) * goods.number;
+      orderSum += sumPrice;
+    }
+    if (couponAmount == null) {
+      couponAmount = 0;
+    }
+    orderSum -= couponAmount;
+    return orderSum / 100.0;
+  };
+
+  module.exports = {
+    goodsSkuText: SkuTools.skuTextAdapter,
+    skuPriceSum: skuPriceSum,
+    goodsCardAdapter: goodsCardAdapter,
+    orderSum: orderSum
+  };
+</wxs>

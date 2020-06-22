@@ -1,0 +1,157 @@
+@import "../../css/base.wxss";
+
+
+/*********************    用户信息     ********************/
+.user-info-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 320rpx;
+  background-color: #FF7B52;
+  border-style: solid;
+  border-width: 0 0 10px 0;
+  border-color: #f7f7f7;
+}
+
+.user-info-block button{
+  width: 160rpx;
+  height: 160rpx;
+  background-repeat:no-repeat;
+  background-size: 160rpx 160rpx;
+  border:none;
+  padding: 0;
+}
+
+.user-info-block .user-info{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-left: 30rpx;
+}
+
+.user-info-block .image-content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 160rpx;
+  height: 160rpx;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.user-info-block image {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+}
+
+.user-info-block text {
+  margin-left: 30rpx;
+  color: white;
+}
+
+
+/*********************    订单信息     ********************/
+
+.order-item-block {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-style: solid;
+  border-width: 0 0 10px 0;
+  border-color: #f6f6f6;
+}
+
+.order-item-block>.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 30rpx;
+  border-style: solid;
+  border-width: 0 0 1px 0;
+  border-color: #f6f6f6;
+}
+
+.order-item-block>.header>.right{
+  display: flex;
+  align-items: center;
+}
+
+.order-item-block>.header>.right>text{
+  color: #888888;
+}
+
+.order-item-block>.header>.right>image{
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.order-item-block>.body {
+  display: flex;
+  justify-content: space-around;
+  padding: 20rpx;
+}
+
+.order-item-block>.body>.order-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.order-item-block>.body>.order-item>image{
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.order-item-block>.body>.order-item>text {
+  margin-top: 15rpx;
+  color: #FF7B52;
+}
+
+
+/*********************    菜单     ********************/
+
+.menu-item-block{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.menu-item-block .menu-item{
+  display: flex;
+}
+
+
+/*********************    模板 菜单选项     ********************/
+.mine-menu-item-block{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 119rpx;
+  margin-left: 30rpx;
+  border-style: solid;
+  border-width: 0 0 1px 0;
+  border-color: #f7f7f7;
+}
+
+.mine-menu-item-block .icon-title-block{
+  display: flex;
+  align-items: center;
+}
+
+.mine-menu-item-block .icon{
+  width: 58rpx;
+  height: 58rpx;
+}
+
+.mine-menu-item-block .title{
+  margin-left: 20rpx;
+}
+
+.mine-menu-item-block .arrow{
+  width: 48rpx;
+  height: 48rpx;
+  margin-right: 30rpx;
+}

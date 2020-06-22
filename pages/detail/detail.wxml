@@ -1,0 +1,217 @@
+<import src="../../template/page_bottom.wxml" />
+<import src="../../template/card_style_template.wxml" />
+
+<view class='container'>
+  <scroll-view class='goods-detail'>
+    <view class='mian-swiper'>
+      <template is="CarouselCardTemplate" data="{{...{carouselData:tools.carouselAdapter(goodsInfo.goodsImgsArr),current:carouselCurrentIndex+1} }}"></template>
+    </view>
+    <view class='goods-desc'>
+      <view class='price-content'>
+        <text class='price detail-price-text' wx:if='{{goodsInfo.goodsRealPrice>0}}'>￥{{goodsInfo.goodsRealPrice/100}}</text>
+      </view>
+      <text class='title h3'>{{goodsInfo.goodsName}}</text>
+      <text class='promise h5'>{{goodsInfo.fuwuChengnuo}}</text>
+      <text class='express h5'>运费：￥0</text>
+    </view>
+    <view class='coupon-block'>
+      <block wx:for="{{goodsInfo.bizCouponDos}}" wx:key=''>
+        <view class='coupon' data-data='{{item}}' catchtap='couponClick'>
+          <view class='left'>
+            <text class='tips h5'>领券</text>
+            <text class='content h5'>{{item.couponName}}</text>
+          </view>
+          <image class='arrow' src='../../images/arrow_right.png'></image>
+        </view>
+      </block>
+    </view>
+    <view class='detail-image'>
+      <block wx:for="{{goodsInfo.goodsContentArr}}" wx:key="" wx:for-index="index">
+        <image wx:if="{{item.type=='img'}}" src='{{item.content}}' mode="widthFix"></image>
+      </block>
+    </view>
+    <template is="page_bottom_view"></template>
+  </scroll-view>
+  <!-- 立即购买按钮  -->
+  <view class='goods-buy' catchtap='goodsBuyClick'>
+    <text>立即购买</text>
+  </view>
+  <!-- sku板块  -->
+  <view class='goods-sku-block' wx:if='{{isShowGoodsPan == true}}' catchtouchmove='catchSkuTouchMove'>
+    <view class='shadow' catchtap='closeClick'></view>
+    <view class='content' catchtouchmove='catchmoveEvent'>
+      <view class='content-header'>
+        <view class='header'>
+          <image src='{{tools.skuImageAdapter(goodsInfo,sku)}}'></image>
+          <view class='middle'>
+            <text class='title h5'>{{goodsInfo.goodsName}}</text>
+            <text class='subtitle h5'>{{tools.selectedTagsText(sku)}}</text>
+            <text class='price card-price-text'>￥{{tools.skuPriceSum(goodsInfo,sku)/100}}</text>
+          </view>
+          <view class='right'>
+            <image src='../../images/close.png' catchtap='closeClick'></image>
+          </view>
+        </view>
+        <view class='body'>
+          <view class='number-block'>
+            <text class='h3'>购买数量:</text>
+            <view class='compone'>
+              <view class='button-content'>
+                <text class='reduce' catchtap='reduceClick'>－</text>
+              </view>
+              <input class='nunber-text h3' type='number' confirm-type='done' bindinput='bindInput' value='{{goodsNumber}}'></input>
+              <view class='button-content'>
+                <text class='plus' catchtap='plusClick'>＋</text>
+              </view>
+            </view>
+          </view>
+          <view class='sku-block'>
+            <block wx:for='{{sku}}' wx:for-item='skuItem' wx:for-index='skuIndex' wx:key=''>
+              <template is='SkuGroupTemplate' data='{{...tools.skuAdapter(skuItem) }}'></template>
+            </block>
+          </view>
+        </view>
+      </view>
+      <view class='content-footer' catchtap='enterClick'>
+        <text>确定</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<template name='SkuGroupTemplate'>
+  <view class='sku-group-template-block' data-data='{{data}}' catchtap='skuItemClick'>
+    <text class='title h3'>{{title}}</text>
+    <view class='sku-group-item'>
+      <block wx:for='{{group}}' wx:key=''>
+        <text class='selected h5' data-data='{{item.data}}' wx:if='{{item.selected == true}}'>{{item.title}}</text>
+        <text class='unselected h5' id='skuItem' data-data='{{item.data}}' wx:else>{{item.title}}</text>
+      </block>
+    </view>
+  </view>
+</template>
+
+<wxs module="tools">
+  var SkuTools = require("../../wxs/SkuTools.wxs");
+
+  var groupItem = function(section, index) {
+    return {
+      'group': section,
+      'tag': index
+    }
+  };
+
+  var tagColor = function(item) {
+    var selected = item.selected;
+    if (selected) {
+      return '#ed1d5c';
+    } else {
+      return '#f0f0f0';
+    }
+  };
+
+  var tagTextColor = function(item) {
+    var selected = item.selected;
+    if (selected) {
+      return '#fff';
+    } else {
+      return '#333';
+    }
+  };
+
+  var selectedTagsText = function(st) {
+    var str = '';
+    for (var i = 0; i < (st.length); i++) {
+      var tags = st[i].group;
+      for (var j = 0; j < tags.length; j++) {
+        var selected = tags[j].selected;
+        if (selected) {
+          str = str + tags[j].skuDesc + '|';
+        }
+      }
+    }
+    if (str.length > 0) {
+      str = str.substring(0, str.length - 1);
+    }
+    return str;
+  };
+
+  var skuPriceSum = function(goodsInfo, sku) {
+    var sum = goodsInfo.goodsRealPrice;
+    for (var i = 0; i < (sku.length); i++) {
+      var tags = sku[i].group;
+      for (var j = 0; j < tags.length; j++) {
+        var selected = tags[j].selected;
+        if (selected) {
+          sum += tags[j].skuRealPrice;
+          break;
+        }
+      }
+    }
+    return sum;
+  };
+
+  var carouselAdapter = function(imgArr) {
+    var carouselData = [];
+    for (var i = 0; i < imgArr.length; i++) {
+      var temp = imgArr[i];
+      var item = {
+        data: temp,
+        imgUrl: temp
+      };
+      carouselData.push(item);
+    }
+    return carouselData;
+  };
+
+  var skuAdapter = function(skuInfo) {
+    var group = [];
+    for (var i = 0; i < skuInfo.group.length; i++) {
+      var groupItem = skuInfo.group[i];
+      group.push({
+        title: groupItem.skuTitle,
+        selected: groupItem.selected,
+        data: groupItem
+      });
+    }
+
+    var sku = {
+      title: skuInfo.title,
+      group: group,
+      data: skuInfo
+    }
+    return sku;
+  };
+
+  var skuImageAdapter = function(goodsInfo,sku){
+    var imageUrl = null;
+    for(var i=0 ; i < sku.length ;i++){
+      var skuItem = sku[i];
+      for(var j=0 ; j < skuItem.group.length ;j++){
+        var groupItem = skuItem.group[j];
+        if(groupItem.selected){
+          var currentSku = groupItem;
+          var tmpImg = currentSku.img11;
+          if(tmpImg != null && tmpImg != ''){
+            imageUrl = tmpImg;
+          }
+        }
+      }
+    }
+    if(imageUrl == null || imageUrl == ''){
+      imageUrl = goodsInfo.goodsImgsArr[0];
+    }
+    return imageUrl;
+  };
+
+  module.exports = {
+    groupItem: groupItem,
+    tagColor: tagColor,
+    selectedTagsText: selectedTagsText,
+    tagTextColor: tagTextColor,
+    skuPriceSum: skuPriceSum,
+    carouselAdapter: carouselAdapter,
+    skuAdapter: skuAdapter,
+    skuImageAdapter:skuImageAdapter
+  };
+</wxs>

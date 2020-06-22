@@ -1,0 +1,138 @@
+<import src="../../template/common_template.wxml" />
+<import src="../../template/card_style_template.wxml" />
+
+<view class='container'>
+  <scroll-view class='scroll-content-block' scroll-y='ture' style='height:{{status!=0?"100%":"1107rpx"}}'>
+    <view class='status-header-block'>
+      <image class='icon' src='../../images/order/unpayment.png' wx:if='{{status==0}}'></image>
+      <image class='icon' src='../../images/order/unship.png' wx:elif='{{status==1}}'></image>
+      <image class='icon' src='../../images/order/shipped.png' wx:elif='{{status==2}}'></image>
+      <image class='icon' src='../../images/order/finish.png' wx:elif='{{status==3}}'></image>
+      <text class='h1' wx:if='{{status==0}}'>待付款</text>
+      <text class='h1' wx:elif='{{status==1}}'>待发货</text>
+      <text class='h1' wx:elif='{{status==2}}'>已发货</text>
+      <text class='h1' wx:elif='{{status==3}}'>已完成</text>
+    </view>
+    <view class='address-info' wx:if='{{orderInfo.express != "自提"}}'>
+      <view class='left'>
+        <image src='../../images/location.png' mode='aspectFit'></image>
+        <view class='middle'>
+          <view class='top'>
+            <view class='left'>
+              <text class='name-title express-info-text'>收货人:</text>
+              <text class='name express-info-text'>{{orderInfo.address.userName}}</text>
+            </view>
+            <view class='right'>
+              <text class='express-info-text'>{{orderInfo.address.userTel}}</text>
+            </view>
+          </view>
+          <view class='bottom'>
+            <text class='addr-title express-info-text'>收货地址:</text>
+            <text class='addr-detail express-info-text'>{{orderInfo.address.area+orderInfo.address.addressName}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <block wx:for='{{orderInfo.goodsList}}' wx:key=''>
+      <view class='goods-card-block' data-data='{{item}}' catchtap='goodsCardClick'>
+        <template is="OrderGoodsCardTemplate" data="{{...tools.orderGoodsCardAdapter(orderInfo,item)}}"></template>
+      </view>
+    </block>
+    <view class='goods-sum-block'>
+      <view class='item-block'>
+        <text class='h5'>商品总价</text>
+        <text class='h5'>￥{{tools.goodsPriceSum(orderInfo.goodsList)/100.0}}</text>
+      </view>
+      <view class='item-block'>
+        <text class='h5'>运费</text>
+        <text class='h5'>{{orderInfo.express}}</text>
+      </view>
+      <view class='item-block'>
+        <text class='h5'>优惠</text>
+        <text class='h5'>￥{{tools.couponPriceSum(orderInfo)/100.0}}</text>
+      </view>
+      <view class='order-total-sum'>
+        <text class='h3'>订单总价</text>
+        <text class='price h3'>￥{{orderInfo.price/100.0}}</text>
+      </view>
+    </view>
+    <!--
+    <view class='goods-pay-sum-block'>
+      <text class='h4'>实付</text>
+      <text class='price h4'>￥340</text>
+    </view>
+    -->
+    <view class='order-info-block'>
+      <view class='order-item'>
+        <text class='h5'>订单编号：</text>
+        <text class='h5'>{{orderInfo.orderId}}</text>
+      </view>
+      <view class='order-item'>
+        <text class='h5'>创建时间：</text>
+        <text class='h5'>{{orderInfo.createTime}}</text>
+      </view>
+      <view class='order-item'>
+        <text class='h5'>付款时间：</text>
+        <text class='h5'>{{orderInfo.payTime}}</text>
+      </view>
+    </view>
+  </scroll-view>
+  <view class='goods-pay' catchtap='goodsPayClick' wx:if='{{status==0}}'>
+    <text>立即支付</text>
+  </view>
+</view>
+
+<wxs module="tools">
+  var SkuTools = require("../../wxs/SkuTools.wxs");
+
+  var skuPriceSum = function(goodsInfo) {
+    var sum = goodsInfo.goodsRealPrice;
+    var sku = goodsInfo.sku;
+    for (var i = 0; i < (sku.length); i++) {
+      var tags = sku[i].group;
+      var currentSku = tags[0];
+      sum += currentSku.skuRealPrice;
+    }
+    return sum;
+  };
+
+  var goodsPriceSum = function(goodsList) {
+    var sum = 0;
+    for (var i = 0; i < goodsList.length; i++) {
+      var goods = goodsList[i];
+      sum += goods.number * skuPriceSum(goods);
+    }
+    return sum;
+  };
+
+  var orderGoodsCardAdapter = function(order,item) {
+    var tmpGoods = item;
+    var goods = {
+      imageUrl: SkuTools.skuImageAdapter(tmpGoods.goodsImgsArr[0], tmpGoods.sku),
+      title: tmpGoods.goodsName,
+      subtitle: SkuTools.skuTextAdapter(tmpGoods.sku),
+      number: tmpGoods.number,
+      price: skuPriceSum(tmpGoods) / 100.0
+    };
+    return goods;
+  };
+
+  var couponPriceSum = function(order) {
+    var couponList = order.coupon;
+    var sum = 0;
+    if (couponList != null) {
+      for (var i = 0; i < couponList.length; i++) {
+        var coupon = couponList[i];
+        sum += coupon.couponPrice;
+      }
+    }
+    return sum;
+  };
+
+  module.exports = {
+    skuPriceSum: skuPriceSum,
+    goodsPriceSum: goodsPriceSum,
+    orderGoodsCardAdapter: orderGoodsCardAdapter,
+    couponPriceSum: couponPriceSum
+  };
+</wxs>

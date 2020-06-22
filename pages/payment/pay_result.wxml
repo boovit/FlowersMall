@@ -1,0 +1,61 @@
+<import src="../../template/common_template.wxml" />
+<import src="../../template/card_style_template.wxml" />
+
+<view class='container'>
+  <view class='result-block'>
+    <view class='tips'>
+      <image class='icon' wx:if='{{isPaySuccess}}' src='../../images/payment/success.png'></image>
+      <image class='icon' wx:else src='../../images/payment/warning.png'></image>
+      <text class='text h1' wx:if='{{isPaySuccess}}'>支付成功</text>
+      <text class='text h1' wx:else>支付失败</text>
+    </view>
+    <text class='price h3' wx:if='{{isPaySuccess}}'>实付￥{{payMoney==0?"--":payMoney/100.0}}</text>
+    <view class='button' wx:if='{{isPaySuccess}}'>
+      <text class='h3' catchtap='homeClick'>返回首页</text>
+      <text class='h3' catchtap='orderClick' style='margin-left:30rpx'>查看订单</text>
+    </view>
+    <view class='button' wx:else>
+      <text class='h3' catchtap='repayClick'>重新支付</text>
+      <text class='h3' catchtap='orderClick' style='margin-left:30rpx'>查看订单</text>
+    </view>
+  </view>
+  <view class='recommend-block'>
+    <scroll-view scroll-y='true' style='height:{{scrollViewHight}}rpx'>
+      <block wx:for='{{otherGoodsData}}' wx:key='' wx:for-item="sectonItem">
+        <view class='common-block'>
+          <template is="SectionHeader" data="{{...{title:sectonItem.title} }}"></template>
+          <view class='section-body'>
+            <block wx:for="{{sectonItem.items}}" wx:key="id" wx:index="index">
+              <view class='coupon-item' data-data='{{item}}' catchtap='couponClick' wx:if='{{sectonItem.type == "youhuiquan"}}'>
+                <template is='CouponReceiveEntry' data="{{...{price:item.couponPrice,desc:item.couponName,type:item.type} }}"></template>
+              </view>
+              <view class='portrait-square-item-block' style="margin-top:{{(index==0||index==1)?0:20}}rpx" data-data='{{item}}' catchtap='squareCardClicked' wx:else>
+                <template is="PortraitSquareCard" data="{{...tools.cardDataAdapter(item)}}"></template>
+              </view>
+            </block>
+          </view>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+</view>
+
+<wxs module="tools">
+  var cardDataAdapter = function(item) {
+    var mainImageUrl = "";
+    var images = item.goodsImgsArr11;
+    if (images.constructor == 'Array' && images.length > 0) {
+      mainImageUrl = images[0];
+    }
+    var cardInfo = {
+      "imgurl": mainImageUrl,
+      "title": item.goodsName,
+      "subtitle": '￥' + item.goodsRealPrice / 100 + '元',
+    }
+    return cardInfo;
+  };
+
+  module.exports = {
+    cardDataAdapter: cardDataAdapter
+  };
+</wxs>

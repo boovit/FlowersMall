@@ -1,0 +1,47 @@
+//
+//计算sku总价格
+//
+var skuPriceSum = function (defualtPrice, sku) {
+  var sum = defualtPrice;
+  for (var i = 0; i < (sku.length); i++) {
+    var tags = sku[i].group;
+    var currentSku = tags[0];
+    sum += currentSku.skuRealPrice;
+  }
+  return sum;
+};
+
+//
+// 格式化输出已选择的sku文案
+//
+var skuTextAdapter = function (sku) {
+  var str = '';
+  for (var i = 0; i < (sku.length); i++) {
+    var tags = sku[i].group;
+    var currentSku = tags[0];
+    str = str + currentSku.skuDesc + '|';
+  }
+  if (str.length > 0) {
+    str = str.substring(0, str.length - 1);
+  }
+  return str;
+};
+
+var skuImageAdapter = function(defaultImage,sku){
+  var imgUrl = defaultImage;
+  for (var i = 0; i < (sku.length); i++) {
+    var tags = sku[i].group;
+    var currentSku = tags[0];
+    var tmpImg = currentSku.img11;
+    if(tmpImg != null && tmpImg != ''){
+      imgUrl = tmpImg;
+    }
+  }
+  return imgUrl;
+};
+
+module.exports = {
+  skuPriceSum: skuPriceSum,
+  skuTextAdapter: skuTextAdapter,
+  skuImageAdapter: skuImageAdapter
+};

@@ -1,0 +1,38 @@
+
+<!--  选项卡模板  -->
+<template name="SelectTabTemplate">
+  <view class='select-tab-template-block'>
+    <block wx:for='{{tabItems}}' wx:key=''>
+      <view class='tab-item' data-item='{{item}}' catchtap='selectTabItemClick'>
+        <text class='h4' style='color:{{item.selected?"#FF7B52":"#353535"}}'>{{item.title}}</text>
+        <view class='line' wx:if='{{item.selected}}'></view>
+      </view>
+    </block>
+  </view>
+</template>
+
+<!--  首页section模板  -->
+<template name="SectionHeader">
+  <view class='section-header-block'>
+    <view class='body-block'>
+      <view class='color-block'></view>
+      <text class='title section-title'>{{title}}</text>
+    </view>
+  </view>
+</template>
+
+<!--  首页section模板  -->
+<template name="ErrorViewTemplate">
+  <view class='error-view-template-block'>
+    <text class='tips h6'>{{title}}</text>
+  </view>
+</template>
+
+<!--  icon button 模板  -->
+<template name="IconButtonTemplate">
+  <view class='icon-button-template-block'>
+    <image src='{{icon}}'></image>
+    <text class='h6'>{{text}}</text>
+  </view>
+</template>
+

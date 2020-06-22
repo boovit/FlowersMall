@@ -1,0 +1,161 @@
+@import "../../css/base.wxss";
+@import "../../template/card_style_template.wxss";
+
+.scroll-content-block{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.status-header-block{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 200rpx;
+  background-color: #FF7B52;
+}
+
+.status-header-block .icon{
+  margin-left: 30rpx;
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.status-header-block text{
+  margin-left: 20rpx;
+  color: white;
+}
+
+/*************   收件人信息   ****************/
+
+.address-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 50rpx 30rpx;
+  border-width: 0 0 30rpx 0;
+  border-color:#f6f6f6;
+  border-style: solid;
+}
+
+.address-info>.left {
+  display: flex;
+  align-items: center;
+}
+
+.address-info>.left>image {
+  width: 20px;
+  height: 20px;
+}
+
+.address-info>.left>.middle {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20rpx;
+}
+
+.address-info>.left>.middle>.top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.address-info>.left>.middle>.bottom {
+  display: flex;
+  margin-top: 12rpx;
+}
+
+.address-info>.left>.middle>.bottom>.addr-title {
+  white-space: nowrap;
+}
+
+.goods-card-block{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20rpx;
+}
+
+/*********************  商品金额  *********************/
+.goods-sum-block{
+  display: flex;
+  flex-direction: column;
+  padding: 20rpx 30rpx 0rpx 30rpx;
+  border-width: 0 0 30rpx 0;
+  border-color:#f6f6f6;
+  border-style: solid;
+}
+
+.goods-sum-block>.item-block{
+  display: flex;
+  justify-content: space-between;
+  padding: 5rpx 0;
+}
+
+.goods-sum-block>.item-block text{
+  color: #888;
+}
+
+.goods-sum-block>.order-total-sum{
+  display: flex;
+  justify-content: space-between;
+  padding: 20rpx 0;
+}
+
+.goods-sum-block>.order-total-sum .price{
+  color: #E7001C;
+}
+
+.goods-pay-sum-block{
+  display: flex;
+  justify-content: space-between;
+  padding: 20rpx 30rpx 40rpx 30rpx;
+  border-width: 0 0 30rpx 0;
+  border-color:#f6f6f6;
+  border-style: solid;
+}
+
+.goods-pay-sum-block .price{
+  color: #E7001C;
+}
+
+/*********************   订单信息   **************************/
+.order-info-block{
+  display: flex;
+  flex-direction: column;
+  padding: 40rpx 30rpx;
+}
+
+.order-info-block>.order-item{
+  display: flex;
+  padding: 5rpx 0;
+}
+
+.order-info-block>.order-item text{
+  color: #888;
+}
+
+/**********************    立即支付    *****************************/
+.goods-pay{
+  width: 100%;
+  height: 99rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  border-width: 1rpx 0 0 0;
+  border-color: #e5e5e5;
+  border-style: solid;
+  background-color: white;
+}
+
+.goods-pay>text {
+  color: white;
+  background-color: #ff7b52;
+  width: 690rpx;
+  height: 60rpx;
+  margin: 15rpx 30rpx;
+  border-radius: 10rpx;
+  text-align: center;
+  padding-top: 10rpx;
+}

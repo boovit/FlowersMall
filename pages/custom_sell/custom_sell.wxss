@@ -1,0 +1,286 @@
+@import "../../css/base.wxss";
+
+.body-block{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 905rpx;
+}
+
+.body-block .custom-goods-item{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  padding: 20rpx 0rpx;
+  border-style: solid;
+  border-width: 0 0 1rpx 0;
+  border-color: #e6e6e6;
+}
+
+.body-block .custom-goods-item>.left{
+  display: flex;
+}
+
+.body-block .custom-goods-item>.right{
+  display: flex;
+}
+
+.add-custom-goods{
+  display: flex;
+  width: 100%;
+  height: 120rpx;
+}
+
+.add-custom-goods>.frame{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 20rpx;
+  border-style: dashed;
+  border-width: 1rpx;
+  border-color: #e6e6e6;
+}
+
+.footer-block{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 299rpx;
+  background-color: white;
+}
+
+.footer-block>.pay-amount{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 200rpx;
+  border-width: 1rpx 0 0 0;
+  border-color: #e5e5e5;
+  border-style: solid;
+}
+
+.footer-block>.pay-amount>.left{
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  justify-content: space-around;
+  margin-left: 30rpx;
+}
+
+.footer-block>.pay-amount>.left>.content{
+  display: flex;
+  align-items: baseline;
+}
+
+.footer-block>.pay-amount>.left .amount-price{
+  color: #E7001C;
+  font-size: 60rpx;
+}
+
+.footer-block>.pay-amount>.left>.discount{
+  display: flex;
+  align-items: center;
+  z-index: 10;
+}
+
+.footer-block>.pay-amount>.right{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 250rpx;
+  background-color:#FF7B52;
+}
+
+.footer-block>.pay-amount>.right text{
+  color: white;
+}
+
+/*******************  商品选择板  ****************************/
+.goods-pan-block{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: fixed;
+  background-color:#29292956;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
+
+.goods-pan-block>.pan-body>.header{
+  display: flex;
+  align-items: center;
+  padding: 30rpx;
+  border-style: solid;
+  border-width: 0 0 1rpx 0;
+  border-color: #e6e6e6;
+  background-color: white;
+}
+
+.goods-pan-block>.pan-body>.header>text{
+  margin-left: 20rpx;
+}
+
+.goods-pan-block>.pan-body scroll-view{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 700rpx;
+  background-color: white;
+}
+
+.selected-icon{
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.goods-pan-block>.pan-body .content-block{
+  display: flex;
+  flex-direction: column;
+  margin: 0rpx 30rpx;
+}
+
+.goods-pan-block>.pan-body .content-block .goods-item{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: auto;
+  padding: 30rpx 0rpx;
+  border-style: solid;
+  border-width: 0 0 1rpx 0;
+  border-color: #e6e6e6;
+}
+
+.goods-pan-block>.pan-footer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 88rpx;
+  background-color: #FF7B52;
+  border-style: solid;
+  border-width: 1rpx 0 0 0;
+  border-color: #f7f7f7;
+}
+
+.goods-pan-block>.pan-footer text{
+  color: white;
+}
+
+
+/************      支付二维码       *************/
+.code-image-block{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  background-color:#29292956;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
+
+.code-image-block>image{
+  width: 600rpx;
+  height: 600rpx;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/******************     商品卡片      *******************/
+.custom-goods-card-template-block {
+  display: flex;
+  justify-content: space-between;
+  width: 600rpx;
+  height: 180rpx;
+}
+
+.custom-goods-card-template-block>.left{
+  display: flex;
+  width: auto;
+  height: auto;
+}
+
+.custom-goods-card-template-block>.left>image{
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 10rpx;
+}
+
+.custom-goods-card-template-block>.left>.content{
+  display: flex;
+  flex-direction: column;
+  max-width: 300rpx;
+  height: auto;
+  margin-left: 20rpx;
+}
+
+.custom-goods-card-template-block>.left>.content>.title{
+  height: auto;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.custom-goods-card-template-block>.left>.content>.subtitle{
+  height: auto;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #888888;
+  margin-top: 10rpx;
+}
+
+.custom-goods-card-template-block>.right{
+  display: flex;
+  width: auto;
+  height: auto;
+}
+
+.custom-goods-card-template-block>.right .price{
+  color:#E7001C;
+}
+
+/**********      数量选择      ***********/
+.number-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 40rpx;
+}
+
+.compone {
+  display: flex;
+  align-items: center;
+  height: auto;
+  margin-left: 20rpx;
+}
+
+.compone>.button-content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 25rpx;
+  background-color: #d6d6d6;
+}
+
+.compone .reduce,.plus {
+  color: white;
+}
+
+.compone>input {
+  width: 80rpx;
+  text-align: center;
+}

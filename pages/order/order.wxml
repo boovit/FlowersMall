@@ -1,0 +1,81 @@
+<import src="../../template/common_template.wxml" />
+<import src="../../template/card_style_template.wxml" />
+
+<view class='container'>
+  <view class='header-tab-block'>
+    <template is="SelectTabTemplate" data="{{...{tabItems:orderItems} }}"></template>
+  </view>
+  <view class='error-block' style='height:{{scrollViewHeight}}rpx' wx:if='{{currentOrderList.length<=0}}'>
+    <template is="ErrorViewTemplate" data="{{...{title:'您还没有订单信息'} }}"></template>
+  </view>
+  <scroll-view class='order-list-block' style='height:{{scrollViewHeight}}rpx' scroll-y='ture' lower-threshold='0' enable-back-to-top='ture' bindscrolltolower='scrollViewDidLoadMore' wx:else>
+    <block wx:for='{{currentOrderList}}' wx:key='' wx:for-item='order'>
+      <view class='order-block' data-data='{{order}}' catchtap='orderCardClick'>
+        <template is="OrderCardTemplate" data="{{...tools.orderCardTemplateAdapter(order) }}"></template>
+      </view>
+    </block>
+    <view class='bottom-margin' wx:if='{{currentOrderList.length>0}}'>
+      <text class='h6'>{{hasMore?'上拉加载更多':'已经到达底线'}}</text>
+    </view>
+  </scroll-view>
+</view>
+
+<wxs module="tools">
+  var SkuTools = require("../../wxs/SkuTools.wxs");
+
+  var skuPriceSum = function(goodsInfo) {
+    var sum = goodsInfo.goodsRealPrice;
+    var sku = goodsInfo.sku;
+    for (var i = 0; i < (sku.length); i++) {
+      var tags = sku[i].group;
+      var currentSku = tags[0];
+      sum += currentSku.skuRealPrice;
+    }
+    return sum;
+  };
+
+  var couponPriceSum = function(order) {
+    var couponList = order.coupon;
+    var sum = 0;
+    if (couponList != null) {
+      for (var i = 0; i < couponList.length; i++) {
+        var coupon = couponList[i];
+        sum += coupon.couponPrice;
+      }
+    }
+    return sum;
+  };
+
+  var orderCardTemplateAdapter = function(order) {
+    var totalNumber = order.orderGoodsCount;
+    var totalPrice = order.price / 100.0;
+    var status = order.status;
+    var goodsList = [];
+    for (var i = 0; i < order.goodsList.length; i++) {
+      var tmpGoods = order.goodsList[i];
+      var goods = {
+        imageUrl: SkuTools.skuImageAdapter(tmpGoods.goodsImgsArr[0], tmpGoods.sku),
+        title: tmpGoods.goodsName,
+        subtitle: SkuTools.skuTextAdapter(tmpGoods.sku),
+        number: tmpGoods.number,
+        price: skuPriceSum(tmpGoods) / 100.0
+      };
+      goodsList.push(goods);
+    }
+
+    var order = {
+      orderId: order.orderId,
+      orderCreateTime: order.createTime,
+      status: status,
+      totalNumber: totalNumber,
+      totalPrice: totalPrice,
+      goods: goodsList[0],
+      goodsList: goodsList
+    };
+    return order;
+  };
+
+  module.exports = {
+    orderCardTemplateAdapter: orderCardTemplateAdapter
+  };
+</wxs>

@@ -1,0 +1,31 @@
+/*字号:*/
+base-size-font {
+  --ex-large-font-size: 36px;
+  --large-font-size: 30px;
+  --middle-font-size: 28px; /*海报标题字号*/
+  --little-font-size: 24px;
+  --ex-little-font-size: 18px;
+}
+
+/*间距:*/
+
+base-size-space {
+  --diff-block-space-size: 40px;
+  --normal-space-size: 30px;
+  --intimate-space-size: 20px;
+  --ex-intimate-space-size: 10px;
+}
+
+/*分割线宽度:*/
+
+base-size-block-line {
+  --normal-block-line-size: var(--normal-space-size);
+}
+
+/*icon尺寸*/
+
+base-size-icon {
+  --list-icon-size: 38px; /*列表内icon尺寸*/
+  --tabbar-icon-size: 46px;
+  --nav-icon-size: 38px;
+}

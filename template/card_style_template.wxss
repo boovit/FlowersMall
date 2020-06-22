@@ -1,0 +1,509 @@
+@import "../css/base.wxss";
+
+.big-card-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.big-card-bottom {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  height: 13vw;
+  margin: 2vw 5vw;
+}
+
+.big-card-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.big-card-subtitle {
+  color: red;
+}
+
+.big-card-bottom>.button-group{
+  display: flex;
+  justify-content: center;
+}
+
+.big-card-bottom .share {
+  display: flex;
+  height: 6vw;
+  background-color:transparent!important;
+  border-style: none;
+  margin-right: 5vw;
+}
+
+.big-card-bottom .share::after{
+  border: none;
+}
+
+.big-card-bottom .share>image {
+  width: 6vw;
+  height: 6vw;
+}
+
+.big-card-bottom .cart {
+  width: 6vw;
+  height: 6vw;
+}
+
+.square-card-container{
+  display: flex;
+  flex-direction: column;
+}
+
+.square-card-text{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 11vw;
+  margin-top: 2vw;
+}
+
+.square-card-title{
+
+}
+
+.square-card-subtitle{
+  color: red;
+}
+
+
+.coupon-card-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 375rpx;
+  height: 100rpx;
+}
+
+
+/**************     轮播图    *****************/
+.carousel-card-template-block {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 750rpx;
+  height: 500rpx;
+}
+
+.carousel-card-template-block swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-card-template-block swiper-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.carousel-card-template-block .carousel-image {
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-card-template-block .carousel-index {
+  position: absolute;
+  width: 80rpx;
+  height: 38rpx;
+  font-size: 32rpx;
+  text-align: center;
+  padding-bottom: 6rpx;
+  border-radius: 10rpx;
+  background-color: rgba(128, 128, 128, 0.301);
+  color: white;
+  right: 30rpx;
+  bottom: 30rpx;
+}
+
+/**********************   订单卡片模板  ************************/
+
+.order-card-template-block {
+  display: flex;
+  flex-direction: column;
+  width: 690rpx;
+  padding-bottom: 30rpx;
+  background-color: white;
+  border-radius: 15rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 8rpx #f0f0f0;
+}
+
+.order-card-template-block>.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: auto;
+  height: 110rpx;
+  margin: 0 30rpx;
+  border-style: solid;
+  border-color: #e6e6e6;
+  border-width: 0 0 1rpx 0;
+}
+
+.order-card-template-block>.header>.left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: auto;
+  height: auto;
+}
+
+.order-card-template-block>.header>.left>.order-id{
+  display: flex;
+}
+
+.order-card-template-block>.header>.left>.order-create-time{
+  display: flex;
+  margin-top: 15rpx;
+}
+
+.order-card-template-block>.header>.left text{
+  color: #888;
+}
+
+.order-card-template-block>.header>.right {
+  display: flex;
+}
+
+.order-card-template-block>.header>.right>text {
+  color: #ff7b52;
+}
+
+.order-card-template-block>.content{
+  display: flex;
+  justify-content: center;
+  width: auto;
+  margin: 30rpx;
+}
+
+.order-card-template-block>.footer{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: auto;
+  height: auto;
+  margin-right: 30rpx;
+}
+
+.order-card-template-block>.footer>.content{
+  display: flex;
+  align-items: flex-end;
+}
+
+.order-card-template-block>.footer>.content>.total-price{
+  margin-left: 10rpx;
+}
+
+.order-card-template-block>.footer>.footer-button{
+  display: flex;
+  width: auto;
+  height: auto;
+}
+
+.order-card-template-block>.footer>.footer-button>.button{
+  text-align: center;
+  color:white;
+  background-color: #ff7b52;
+  margin-top: 30rpx;
+  margin-left: 30rpx;
+  padding: 9rpx 19rpx;
+  border-radius: 5rpx;
+}
+
+/**********************   订单商品卡片模板  ************************/
+.order-Goods-card-template-block {
+  display: flex;
+  justify-content: space-between;
+  width: 630rpx;
+  height: 200rpx;
+  padding: 10rpx 0;
+}
+
+.order-Goods-card-template-block>.left{
+  display: flex;
+  width: auto;
+  height: auto;
+}
+
+.order-Goods-card-template-block>.left>image{
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 10rpx;
+}
+
+.order-Goods-card-template-block>.left>.content{
+  display: flex;
+  flex-direction: column;
+  max-width: 300rpx;
+  height: auto;
+  margin-left: 20rpx;
+}
+
+.order-Goods-card-template-block>.left>.content>.title{
+  height: auto;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.order-Goods-card-template-block>.left>.content>.subtitle{
+  height: auto;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #888888;
+  margin-top: 10rpx;
+}
+
+.order-Goods-card-template-block>.left>.content>.number{
+  color: #888888;
+  margin-top: 23rpx;
+}
+
+.order-Goods-card-template-block>.right{
+  display: flex;
+  width: auto;
+  height: auto;
+}
+
+
+/***************     订单多商品 模板      ********************/
+.order-Goods-List-card-template-block{
+  display: flex;
+  width: 630rpx;
+  height: 200rpx;
+  padding: 10rpx 0;
+}
+
+.order-Goods-List-card-template-block>scroll-view{
+  display: flex;
+  width: 630rpx;
+  height: 200rpx;
+}
+
+.order-Goods-List-card-template-block image{
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 10rpx;
+  margin-left: 10rpx;
+}
+
+
+/******************      优惠券 模板       *******************/
+.coupon-template-block{
+  display: flex;
+  width: 690rpx;
+  height: 230rpx;
+  position: relative;
+}
+
+.coupon-template-block>image{
+  width: 100%;
+  height: 100%;
+}
+
+.coupon-template-block>.content{
+  display: flex;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.coupon-template-block>.content>.left{
+  display: flex;
+  justify-content: center;
+  width: 229rpx;
+  height: 100%;
+}
+
+.coupon-template-block>.content>.left>.top{
+  display: flex;
+  align-items: flex-end;
+  width: auto;
+  height: 80rpx;
+  margin-top: 45rpx;
+}
+
+.coupon-template-block>.content>.left>.top>.flag{
+  color: white;
+  height: auto;
+}
+
+.coupon-template-block>.content>.left>.top>.price{
+  color: white;
+  font-size: 80rpx;
+  line-height: 80rpx;
+  height: auto;
+}
+
+.coupon-template-block>.content>.right{
+  display: flex;
+  align-items: center;
+  width: 461rpx;
+  height: 100%;
+}
+
+.coupon-template-block>.content>.right>.content{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 30rpx;
+  width: 220rpx;
+  height: 100%;
+}
+
+.coupon-template-block>.content>.right>.content text{
+  color: #888888;
+  margin-top: 10rpx;
+}
+
+.coupon-template-block>.content>.right>.status{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: 100%;
+}
+
+.coupon-template-block>.content>.right>.status>text{
+  width: 150rpx;
+  height: 40rpx;
+  text-align: center;
+  padding-top: 15rpx;
+  color: white;
+  background-color: #FF7B52;
+  margin-left: 10rpx;
+  border-radius: 5rpx;
+}
+
+.coupon-template-block>.content>.right>.status>image{
+  width: 182rpx;
+  height: 182rpx;
+}
+
+.coupon-template-block>.content>.right>.edite{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: 100%;
+  flex-grow: 1;
+}
+
+.coupon-template-block>.content>.right>.edite>image{
+  width: 46rpx;
+  height: 46rpx;
+}
+
+/****************************    竖向 方形 卡片  ****************************/
+
+.portrait-square-card-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 335rpx;
+  height: 479rpx;
+  border-radius: 15rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 8rpx #f0f0f0;
+}
+
+.portrait-square-card-block .poster {
+  width: 100%;
+  height: 335rpx;
+}
+
+.portrait-square-card-block .title {
+  margin-top: 30rpx;
+}
+
+.portrait-square-card-block .subtitle {
+  margin-top: 20rpx;
+}
+
+/****************************    优惠券入口  ****************************/
+
+.coupon-receive-entry-block {
+  display: flex;
+  width: 335rpx;
+  height: 170rpx;
+  position: relative;
+}
+
+.coupon-receive-entry-block>image {
+  width: 100%;
+  height: 100%;
+}
+
+.coupon-receive-entry-block>.content {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0rpx;
+  left: 0rpx;
+}
+
+.coupon-receive-entry-block>.content .left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  max-width: 50%;
+}
+
+.coupon-receive-entry-block>.content .left>.flag {
+  color: white;
+  position: relative;
+  top: -10rpx;
+}
+
+.coupon-receive-entry-block>.content .left>.price {
+  font-size: 80rpx;
+  line-height: 80rpx;
+  color: white;
+  margin-left: 5rpx;
+}
+
+.coupon-receive-entry-block>.content .right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: auto;
+  margin-left: 20rpx;
+}
+
+.coupon-receive-entry-block>.content .right>.desc {
+  color: white;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 160rpx;
+  text-align: center;
+}
+
+.coupon-receive-entry-block>.content .right>.button {
+  color: white;
+  width: 125rpx;
+  height: 30rpx;
+  border-radius: 5rpx;
+  text-align: center;
+  background-color: #ff7b52;
+  padding-top: 8rpx;
+  margin-top: 10rpx;
+}

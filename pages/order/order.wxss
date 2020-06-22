@@ -1,0 +1,47 @@
+@import "../../css/base.wxss";
+@import "../../template/common_template.wxss";
+@import "../../template/card_style_template.wxss";
+/* header tab block */
+.header-tab-block {
+  display: flex;
+  width: 100%;
+  height: 93rpx;
+}
+
+/* error block */
+.error-block{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: #f6f6f6;
+}
+
+/* order list block */
+.order-list-block {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #f6f6f6;
+}
+
+.order-list-block .order-block {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  margin-top: 30rpx;
+}
+
+.order-list-block .bottom-margin{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: 100rpx;
+}
+.order-list-block .bottom-margin>text{
+  color: #888;
+}
+
+

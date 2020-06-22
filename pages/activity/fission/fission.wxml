@@ -1,0 +1,81 @@
+<import src="../../../template/page_bottom.wxml" />
+<import src="../../../template/card_style_template.wxml" />
+<import src="../../../template/common_template.wxml" />
+
+<view class='container'>
+  <view class='main-activity-block'>
+    <view class='user-header' wx:if="{{userInfo != null}}">
+      <view class='left'>
+        <image class='poster' src='{{userInfo.avatarUrl}}'></image>
+        <text class='nick h4'>{{userInfo.nickName}}</text>
+      </view>
+      <view class='right'>
+        <text class='sum-money h4'>可兑金额:￥{{fissionSum}}</text>
+        <text class='button h5' catchtap='exchangeClick'>兑换</text>
+      </view>
+    </view>
+    <view class='mian-swiper'>
+      <image src='{{goods.goodsImgsArr[0]}}'></image>
+    </view>
+    <view class='content-desc'>
+      <view class='goods-desc'>
+        <view class='price-content'>
+          <text class='price detail-price-text' wx:if='{{goods.goodsRealPrice>0}}'>￥{{goods.goodsRealPrice/100}}</text>
+        </view>
+        <text class='title h3'>{{goods.goodsName}}</text>
+      </view>
+      <view class='share-block'>
+        <view class='icon-button-item' catchtap='favoriteClick'>
+          <template wx:if="{{isFavorite}}" is="IconButtonTemplate" data="{{...{icon:'../../../images/favorite.png',text:'1234'} }}"></template>
+          <template wx:else is="IconButtonTemplate" data="{{...{icon:'../../../images/unfavorite.png',text:'1234'} }}"></template>
+        </view>
+        <view class='icon-button-item' catchtap='shareClick'>
+          <template is="IconButtonTemplate" data="{{...{icon:'../../../images/share.png',text:'分享'} }}"></template>
+        </view>
+      </view>
+    </view>
+    <view class='actor-block'>
+      <view class='actor-item'>
+        <view class='left'>
+          <image class='poster' src='{{userInfo.avatarUrl}}'></image>
+          <text class='nick h5'>{{userInfo.nickName}}</text>
+        </view>
+        <text class='text h5'>助力1元</text>
+      </view>
+    </view>
+  </view>
+  <!-- 分享板块 -->
+  <view class='share-pan-block' wx:if='{{isShowSharePan == true}}'>
+    <view class='shadow' catchtap='closeSharePan'></view>
+    <view class='action-items'>
+      <view class='button-content'>
+        <button plain='true' catchtap='createPosterClick'>生成海报</button>
+      </view>
+      <view class='button-content' style='border-width: 0 0 30rpx 0;'>
+        <button open-type='share' plain='true' id='shareBtn'>分享好友</button>
+      </view>
+      <view class='button-content'>
+        <button plain='true' catchtap='closeSharePan'>取消</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 海报图片 -->
+  <view class='poster-image-block' wx:if='{{showPoster}}' catchtap='closePosterClick'>
+    <view class='poster-content'>
+      <image class='poster' src='{{posterData}}' mode='aspectFit'></image>
+      <view class='button-content'>
+        <view class='btn' catchtap='cancelPosterClick'>
+          <text class='h3'>取消</text>
+        </view>
+        <view class='btn' catchtap='savePosterClick'>
+          <text class='h3'>保存相册</text>
+        </view>
+        <view class='btn' catchtap='openSetting'>
+          <text class='h3'>授权设置</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+</view>

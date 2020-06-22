@@ -1,0 +1,43 @@
+{
+  "pages":[
+    
+    "pages/home/home",
+    "pages/cart/cart",
+    "pages/mine/mine",
+    "pages/detail/detail",
+    "pages/new_order/new_order",
+    "pages/payment/pay_result",
+    "pages/custom_sell/custom_sell",
+    "pages/coupon/coupon",
+    "pages/order/order",
+    "pages/order_detail/order_detail",
+    "pages/address_list/address_list",
+    "pages/address_edit/address_edit",
+    "pages/activity/fission/fission"
+  ],
+  "window":{
+    "backgroundTextStyle":"dark",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "吆喝鲜花",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh":true
+  },
+  "tabBar": {
+    "color": "#d6d6d6",
+    "selectedColor": "#FF7B52",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "精选",
+        "iconPath": "images/tabbar/home.png",
+        "selectedIconPath": "images/tabbar/home_select.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "images/tabbar/mine.png",
+        "selectedIconPath": "images/tabbar/mine_select.png"
+      }
+    ]
+  }
+}

@@ -1,0 +1,64 @@
+<import src="../../template/card_style_template.wxml" />
+<import src="../../template/page_bottom.wxml" />
+<import src="../../template/common_template.wxml" />
+<wxs src="home.wxs" module="homeTools" />
+
+<view class="container">
+  <block wx:for="{{homeData}}" wx:for-item="sectonItem" wx:for-index="sectonItemIndex" wx:key="index">
+    <block wx:if="{{sectonItem.type == 'lunbo'}}">
+      <view class='carousel-block'>
+        <template is="CarouselCardTemplate" data="{{...{carouselData:homeTools.carouselAdapter(sectonItem.items),current:carouselCurrentIndex+1} }}"></template>
+      </view>
+    </block>
+    <block wx:elif="{{sectonItem.type == 'youhuiquan' && sectonItem.items.length>0}}">
+      <view class='coupon-block'>
+        <template is="SectionHeader" data="{{...{title:sectonItem.title} }}"></template>
+        <view class='section-body'>
+          <block wx:for="{{sectonItem.items}}" wx:for-item="couponItem" wx:for-index="index" wx:key=''>
+            <view class='coupon-item' data-data='{{couponItem}}' catchtap='couponClick'>
+              <template is='CouponReceiveEntry' data="{{...{price:couponItem.couponPrice,desc:couponItem.couponName,type:couponItem.type} }}"></template>
+            </view>
+          </block>
+        </view>
+      </view>
+    </block>
+    <block wx:elif="{{sectonItem.type == 'huodong'}}">
+    </block>
+    <block wx:elif="{{sectonItem.type == 'rexiao'}}">
+      <view class='rexiao-block'>
+        <template is="SectionHeader" data="{{...{title:sectonItem.title} }}"></template>
+        <scroll-view class='landscape-block' scroll-x="true">
+          <block wx:for="{{sectonItem.items}}" wx:key="type" wx:for-index="index">
+            <view class='landscape-item-block' style="margin-left:{{index==0?31:20}}rpx; margin-right:{{index==sectonItem.items.length-1?31:0}}rpx" data-data="{{item}}" catchtap='landscapeItemClicked'>
+              <template is="LandscapeBigCard" data="{{...{title:item.goodsName,subtitle:'￥'+item.goodsRealPrice/100,imgurl:item.goodsImgsArr[0]} }}"></template>
+            </view>
+          </block>
+        </scroll-view>
+        <view class='section-bottom-line'></view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class='common-block'>
+        <template is="SectionHeader" data="{{...{title:sectonItem.title} }}"></template>
+        <view class='section-body'>
+          <block wx:for="{{sectonItem.items}}" wx:key="id" wx:index="index">
+            <view class='portrait-square-item-block' style="margin-top:{{(index==0||index==1)?0:20}}rpx" data-data='{{item}}' catchtap='squareCardClicked'>
+              <template is="PortraitSquareCard" data="{{...homeTools.cardData(item)}}"></template>
+            </view>
+          </block>
+        </view>
+      </view>
+    </block>
+  </block>
+  <template is="page_bottom_view"></template>
+</view>
+
+<!------------------------   首页模板 ------------------------------>
+
+<template name="LandscapeBigCard">
+  <view class='landscape-big-card-block'>
+    <image class='poster' src='{{imgurl}}'></image>
+    <text class='title card-title'>{{title}}</text>
+    <text class='subtitle card-price-text'>{{subtitle}}</text>
+  </view>
+</template>

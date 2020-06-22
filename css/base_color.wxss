@@ -1,0 +1,21 @@
+/*主题色:*/
+base-color-theme {
+  --theme-color: #FF7B52;
+  --ab-theme-color:#E7001C;
+}
+
+/*基础色:背景，分隔线，icon*/
+base-color-auxiliary {
+  --aux-color-one-level: #f6f6f6;
+  --aux-color-two-level: #e6e6e6;
+  --aux-color-three-level: #e5e5e5;
+  --aux-color-four-level: #f8f8f8;
+}
+
+/*字体色:*/
+base-color-font {
+  --font-color-one-level: #353535;
+  --font-color-two-level: #888;
+  --font-color-three-level: #bbb;
+  --font-color-white-level: #fff;
+}

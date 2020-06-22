@@ -1,0 +1,5 @@
+<template name="page_bottom_view">
+  <view class='page-bottom-view-container'>
+    <text>©2019 吆喝网络提供技术支持</text>
+  </view>
+</template>

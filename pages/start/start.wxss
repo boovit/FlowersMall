@@ -1,0 +1,18 @@
+@import "../../css/base.wxss";
+@import "../../template/page_bottom.wxss";
+
+.container{
+  height: 100vh;
+}
+
+.content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.app-logo{
+  width: 150rpx;
+  height: 150rpx;
+}

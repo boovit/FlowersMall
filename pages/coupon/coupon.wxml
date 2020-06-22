@@ -1,0 +1,17 @@
+<import src="../../template/common_template.wxml" />
+<import src="../../template/card_style_template.wxml" />
+
+<view class='container'>
+  <view class='coupon-list-block'>
+    <view class='list-tab'>
+      <template is="SelectTabTemplate" data="{{...{tabItems:couponItems} }}"></template>
+    </view>
+    <scroll-view scroll-y='ture' style='height:{{scrollViewHeight}}rpx'>
+      <block wx:for='{{currentCouponList}}' wx:key=''>
+        <view class='coupon-content' data-data='{{item}}' catchtap='couponClick'>
+          <template is="CouponTemplate" data="{{...{type:item.type,status:item.status,price:item.couponPrice,desc:item.couponName,rule:item.source,endtime:item.endTime} }}"></template>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+</view>

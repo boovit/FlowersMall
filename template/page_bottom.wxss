@@ -1,0 +1,12 @@
+.page-bottom-view-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 120rpx;
+}
+
+.page-bottom-view-container text{
+  color: rgb(197, 197, 197);
+  font-size: 20rpx;
+}

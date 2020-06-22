@@ -1,0 +1,53 @@
+<import src="../../template/common_template.wxml" />
+<import src="../../template/card_style_template.wxml" />
+
+<view class='container'>
+  <view class='wechat-address-block' catchtap='wechatAddressClick'>
+    <view class='left'>
+      <image src='../../images/wechat_icon.png'></image>
+      <text class='h4'>获取微信地址</text>
+    </view>
+    <image src='../../images/arrow_right.png'></image>
+  </view>
+  <scroll-view class='address-list-block' scroll-y="true">
+    <block wx:for='{{addressList}}' wx:key=''>
+      <view class='address-card-content'>
+        <template is='AddressCardTemplate' data='{{...tools.addressCardAdapter(item) }}'></template>
+      </view>
+    </block>
+  </scroll-view>
+</view>
+
+<template name='AddressCardTemplate'>
+  <view class='address-card-block' data-data='{{data}}' catchtap='addressCardClick'>
+    <image class='selected-icon' src='../../images/unselected.png' wx:if='{{!selected}}'></image>
+    <image class='selected-icon' src='../../images/selected.png' wx:else></image>
+    <view class='right'>
+      <view class='address-content'>
+        <view class='top'>
+          <text class='h4 name'>{{name}}</text>
+          <text class='h4 tel'>{{tel}}</text>
+        </view>
+        <text class='h4 addr'>{{addr}}</text>
+      </view>
+      <icon class='delete-icon' id='delete' type='cancel' size='23'></icon>
+    </view>
+  </view>
+</template>
+
+<wxs module="tools">
+  var addressCardAdapter = function(addr) {
+    address = {
+      data: addr,
+      selected: addr.selected,
+      name: addr.userName,
+      tel: addr.userTel,
+      addr: addr.area + addr.addressName
+    }
+    return address;
+  };
+
+  module.exports = {
+    addressCardAdapter: addressCardAdapter
+  };
+</wxs>

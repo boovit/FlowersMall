@@ -1,0 +1,49 @@
+<view class='container'>
+  <view class='user-info-block'>
+    <button wx:if='{{userInfo == null}}' open-type="getUserInfo" plain='true' bindgetuserinfo="onGotUserInfo">
+      <image src='../../images/mine/default_head.png'></image>
+    </button>
+    <view class='user-info' wx:else>
+      <view class='image-content'>
+        <image src='{{userInfo.avatarUrl}}'></image>
+      </view>
+      <text class='h1'>{{userInfo.nickName}}</text>
+    </view>
+  </view>
+  <view class='order-item-block'>
+    <view class='header'>
+      <view class='left'>
+        <text class='h3'>我的订单</text>
+      </view>
+      <view class='right' data-item='{{orderItems[0]}}' catchtap='orderItemClick'>
+        <text class='h5'>查看全部订单</text>
+        <image src='../../images/arrow_right.png'></image>
+      </view>
+    </view>
+    <view class='body'>
+      <block wx:for='{{orderItems}}' wx:key=''>
+        <view wx:if='{{item.type != -1}}' class='order-item' data-item='{{item}}' catchtap='orderItemClick'>
+          <image src='{{item.icon}}'></image>
+          <text class='h5'>{{item.title}}</text>
+        </view>
+      </block>
+    </view>
+  </view>
+  <view class='menu-item-block'>
+    <block wx:for='{{menuItems}}' wx:key=''>
+      <view class='menu-item' data-item='{{item}}' catchtap='menuItemClick'>
+        <template is="MineMenuItem" data="{{...{title:item.title,imgurl:item.icon} }}"></template>
+      </view>
+    </block>
+  </view>
+</view>
+
+<template name="MineMenuItem">
+  <view class='mine-menu-item-block'>
+    <view class='icon-title-block'>
+      <image class='icon' src='{{imgurl}}'></image>
+      <text class='title card-title'>{{title}}</text>
+    </view>
+    <image class='arrow' src='../../images/arrow_right.png'></image>
+  </view>
+</template>

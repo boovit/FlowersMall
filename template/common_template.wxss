@@ -1,0 +1,89 @@
+@import "../css/base.wxss";
+
+/******************      选项tab 模板       *******************/
+
+.select-tab-template-block {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 93rpx;
+}
+
+.select-tab-template-block .tab-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 100%;
+}
+
+.select-tab-template-block .tab-item .line {
+  position: absolute;
+  bottom: 0rpx;
+  height: 6rpx;
+  width: 100%;
+  background-color: #ff7b52;
+}
+
+/***************************   section header   ***************************/
+
+.section-header-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+  height: 100rpx;
+  padding-left: 30rpx;
+  padding-bottom: 30rpx;
+}
+
+.section-header-block .body-block {
+  display: flex;
+  align-items: center;
+  height: 42rpx;
+}
+
+.section-header-block .color-block {
+  width: 10rpx;
+  height: 40rpx;
+  background-color: #ff7b52;
+}
+
+.section-header-block .title {
+  margin-left: 20rpx;
+}
+
+/***************************   Error View   ***************************/
+
+.error-view-template-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.error-view-template-block>.tips {
+  color: #888;
+}
+
+/***************************   icon-button   ***************************/
+
+.icon-button-template-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+}
+
+.icon-button-template-block>image {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.icon-button-template-block>text {
+  margin-top: 10rpx;
+  color: #bbb;
+}

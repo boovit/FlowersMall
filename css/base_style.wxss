@@ -1,0 +1,4 @@
+/*字体*/
+base-font-family{
+  --normal-font-family:'微软雅黑';
+}

@@ -1,0 +1,8 @@
+<import src="../../template/page_bottom.wxml" />
+
+<view class='container'>
+  <view class='content'>
+    <image class='app-logo' src='../../images/app_logo.png' catchtap='loginClick'></image>
+  </view>
+  <template is="page_bottom_view"></template>
+</view>

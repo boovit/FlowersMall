@@ -1,0 +1,130 @@
+<view class='container'>
+  <scroll-view class='body-block' scroll-y='true'>
+    <block wx:for='{{sku}}' wx:key=''>
+      <view class='custom-goods-item' wx:if='{{item.selected}}'>
+        <template is='CustomGoodsCardTemplate' data="{{...tools.customGoodsAdapter(mixGoods,item) }}"></template>
+      </view>
+    </block>
+  </scroll-view>
+  <view class='footer-block'>
+    <view class='add-custom-goods' catchtap='addCustomGoodsClick'>
+      <view class='frame'>
+        <text class='h3'>添加商品</text>
+      </view>
+    </view>
+    <view class='pay-amount'>
+      <view class='left'>
+        <view class='content'>
+          <text class='text h1'>合计:</text>
+          <text class='amount-price'>￥{{(tools.goodsAmount(mixGoods,sku)+discount*100)/100.0}}</text>
+        </view>
+        <view class='discount'>
+          <text class='h1'>价格调整:</text>
+          <view class='compone'>
+            <view class='button-content' data-data='{{data}}' catchtap='discountReduceClick'>
+              <text class='reduce'>－</text>
+            </view>
+            <input class='nunber-text h1' type='number' confirm-type='done' bindinput='bindDiscountInput' disabled='true' value='{{discount}}' data-data='{{data}}'></input>
+            <view class='button-content' data-data='{{data}}' catchtap='discountPlusClick'>
+              <text class='plus'>＋</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class='right' catchtap='getQRCodeClick'>
+        <text>收款码</text>
+      </view>
+    </view>
+  </view>
+
+  <!--------------   选择板   ------------->
+
+  <view class='goods-pan-block' wx:if='{{showGoodsPan}}' catchtap='closePanClick'>
+    <view class='pan-body' catchtap='panBodyClick'>
+      <!--
+      <view class='header'>
+        <image class='selected-icon' src='../../images/unselected.png' wx:if='{{!isSelectedAll}}' catchtap='selectedAllClick'></image>
+        <image class='selected-icon' src='../../images/selected.png' wx:else catchtap='selectedAllClick'></image>
+        <text class='h4'>全选</text>
+      </view>
+    -->
+      <scroll-view scroll-y='true'>
+        <view class='content-block'>
+          <block wx:for='{{sku}}' wx:key=''>
+            <view class='goods-item'>
+              <image class='selected-icon' src='../../images/unselected.png' wx:if='{{!item.selected}}' catchtap='selectedClick' data-data='{{item}}'></image>
+              <image class='selected-icon' src='../../images/selected.png' wx:else catchtap='selectedClick' data-data='{{item}}'></image>
+              <template is='CustomGoodsCardTemplate' data="{{...tools.customGoodsAdapter(mixGoods,item) }}"></template>
+            </view>
+          </block>
+        </view>
+      </scroll-view>
+    </view>
+    <view class='pan-footer' catchtap='panEnterClick'>
+      <text>确定</text>
+    </view>
+  </view>
+
+  <view class='code-image-block' wx:if='{{showCodePan}}' catchtap='closeCodePanClick'>
+    <image src='{{codeData}}'></image>
+  </view>
+</view>
+
+<!--------------     模板   ------------------>
+
+<template name="CustomGoodsCardTemplate">
+  <view class='custom-goods-card-template-block'>
+    <view class='left'>
+      <image src='{{imageUrl}}'></image>
+      <view class='content'>
+        <text class='title h3'>{{title}}</text>
+        <text class='subtitle h5'>{{subtitle}}</text>
+        <view class='number-block'>
+          <text class='h3'>数量:</text>
+          <view class='compone'>
+            <view class='button-content' data-data='{{data}}' catchtap='reduceClick'>
+              <text class='reduce'>－</text>
+            </view>
+            <input class='nunber-text h1' type='number' confirm-type='done' bindinput='bindInput' disabled='true' value='{{number==null?0:number}}' data-data='{{data}}'></input>
+            <view class='button-content' data-data='{{data}}' catchtap='plusClick'>
+              <text class='plus'>＋</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='right'>
+      <text class='h3 price'>￥{{price}}</text>
+    </view>
+  </view>
+</template>
+
+<wxs module="tools">
+  var customGoodsAdapter = function(goods,sku) {
+    var info = {
+      data: sku,
+      imageUrl: sku.img11,
+      title: sku.skuTitle,
+      subtitle: sku.skuDesc,
+      number: sku.number,
+      price: (sku.skuRealPrice+goods.goodsRealPrice) / 100.0
+    };
+    return info;
+  };
+
+  var goodsAmount = function(goods,list) {
+    var sum = 0;
+    for (var i = 0; i < list.length; i++) {
+      var sku = list[i];
+      if (sku.selected) {
+        sum += (sku.skuRealPrice+goods.goodsRealPrice) * (sku.number == null ? 0 : sku.number);
+      }
+    }
+    return sum;
+  };
+
+  module.exports = {
+    customGoodsAdapter: customGoodsAdapter,
+    goodsAmount: goodsAmount
+  };
+</wxs>

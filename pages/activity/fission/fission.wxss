@@ -1,0 +1,198 @@
+@import "../../../template/page_bottom.wxss";
+@import "../../../template/card_style_template.wxss";
+@import "../../../template/common_template.wxss";
+@import "../../../css/base.wxss";
+
+.container {
+  height: 100vh;
+  width: 100vw;
+}
+
+.main-activity-block{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.content-desc {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20rpx 30rpx;
+}
+
+.share-block {
+  display: flex;
+}
+
+.share-block>.icon-button-item {
+  display: flex;
+  margin-left: 30rpx;
+}
+
+/*************** 用户header info *****************/
+.user-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx 30rpx;
+}
+
+.user-header>.left{
+  display: flex;
+  align-items: center;
+}
+
+.user-header>.left .poster{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+
+.user-header>.left .nick{
+  margin-left: 10rpx;
+}
+
+.user-header>.right{
+  display: flex;
+  align-items: center;
+}
+
+.user-header>.right .button{
+  width: 100rpx;
+  padding: 10rpx 0rpx;
+  background-color: #FF7B52;
+  color: white;
+  margin-left: 20rpx;
+  border-radius: 10rpx;
+  text-align: center;
+}
+
+/***************   轮播图   **************/
+
+.mian-swiper {
+  width: auto;
+  height: auto;
+}
+
+.mian-swiper image{
+  width: 750rpx;
+  height: 500rpx;
+}
+
+/**************      分享板       **************/
+.share-pan-block {
+  display: flex;
+  position: fixed;
+  flex-direction: column;
+  bottom: 0rpx;
+  width: 100%;
+  height: 100%;
+}
+
+.share-pan-block>.shadow {
+  width: 100%;
+  height: auto;
+  flex-grow: 1;
+  opacity: 0.3;
+  background-color: black;
+}
+
+.share-pan-block>.action-items {
+  display: flex;
+  flex-direction: column;
+}
+
+.share-pan-block>.action-items .button-content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100rpx;
+  border-width: 0 0 1rpx 0;
+  border-color: #f6f6f6;
+  border-style: solid;
+}
+
+.share-pan-block>.action-items button{
+  width: 100%;
+  height: 100%;
+  color: #333;
+  border:none;
+  line-height:100rpx;
+}
+
+/************** 集赞者列表 *******************/
+.actor-block{
+  display: flex;
+  padding: 0 30rpx;
+}
+
+.actor-block .actor-item{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 70rpx;
+  border-style: solid;
+  border-width: 0 0 1rpx 0;
+  border-color: #e6e6e6;
+}
+
+.actor-block .actor-item>.left{
+  display: flex;
+  align-items: center;
+}
+
+.actor-block .actor-item>.left>.poster{
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+}
+
+.actor-block .actor-item>.left>.nick{
+  margin-left: 20rpx;
+}
+
+/******************* 海报 *******************/
+.poster-image-block{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0rpx;
+  width: 100%;
+  height: 100%;
+  background-color: #00000088
+}
+
+.poster-content{
+  display: flex;
+  flex-direction: column;
+}
+
+.poster-content>.poster{
+  width: 600rpx;
+  height: 800rpx;
+}
+
+.button-content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100rpx;
+}
+
+.button-content>.btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #FF7B52;
+  flex-grow: 1;
+  height: 100%;
+}
+
+.button-content>.btn>text{
+  color: white;
+}

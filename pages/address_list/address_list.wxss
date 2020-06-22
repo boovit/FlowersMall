@@ -1,0 +1,96 @@
+@import "../../template/page_bottom.wxss";
+@import "../../template/card_style_template.wxss";
+@import "../../css/base.wxss";
+
+.container{
+  background-color: #f6f6f6;
+  height: 100vh;
+}
+
+.wechat-address-block{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: auto;
+  height: 124rpx;
+  padding-left:30rpx;
+}
+
+.wechat-address-block>.left{
+  display: flex;
+  align-items: center;
+}
+
+.wechat-address-block>.left>image{
+  width: 64rpx;
+  height: 64rpx;
+}
+
+.wechat-address-block>.left>text{
+  margin-left: 30rpx;
+  color: #888;
+}
+
+.wechat-address-block>image{
+  width: 48rpx;
+  height: 48rpx;
+  margin-right: 30rpx;
+}
+
+.address-list-block{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 1081rpx;
+}
+
+.address-card-content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 10rpx 0;
+}
+
+/********************  地址卡片模板    ************************/
+.address-card-block{
+  display: flex;
+  align-items: center;
+  padding: 0 30rpx;
+  width: 630rpx;
+  height: 194rpx;
+  background-color: white;
+  border-radius: 15rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 8rpx #f0f0f0;
+}
+
+.address-card-block .selected-icon{
+  width: 46rpx;
+  height: 46rpx;
+}
+
+.address-card-block .right{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: auto;
+  flex-grow: 1;
+}
+
+.address-card-block .address-content{
+  margin-left: 20rpx;
+  max-width: 500rpx;
+}
+
+.address-card-block .tel{
+  margin-left: 20rpx;
+}
+
+.address-card-block .addr{
+  color: #888;
+}
+
+.address-card-block .delete-icon{
+}

@@ -1,0 +1,88 @@
+@import "../../template/card_style_template.wxss";
+@import "../../template/page_bottom.wxss";
+@import "../../template/common_template.wxss";
+@import "../../css/base.wxss";
+
+/**************************   carousel   ***************************/
+
+.carousel-block {
+  width: auto;
+  height: auto;
+}
+
+/****************************    section line 区块分隔线  ****************************/
+
+.section-bottom-line {
+  display: flex;
+  width: auto;
+  height: 1rpx;
+  margin: 0 30rpx 0 30rpx;
+  background-color: #f0f0f0;
+}
+
+/****************************    热销 - 大图横滑样式  ****************************/
+
+.rexiao-block {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.rexiao-block scroll-view {
+  display: flex;
+  width: 100%;
+  height: 594rpx;
+  white-space: nowrap;
+}
+
+.rexiao-block .landscape-item-block {
+  display: inline-flex;
+}
+
+/****************************    优惠券领取  ****************************/
+
+.coupon-block {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+}
+
+/****************************    通用模块  ****************************/
+
+.common-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.section-body {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 30rpx;
+  width: auto;
+}
+
+/****************************    横向 大图 卡片  ****************************/
+
+.landscape-big-card-block {
+  display: flex;
+  flex-direction: column;
+  height: 594rpx;
+  width: 660rpx;
+}
+
+.landscape-big-card-block .poster {
+  width: 100%;
+  height: 440rpx;
+  border-radius: 15rpx;
+}
+
+.landscape-big-card-block .title {
+  margin-top: 36rpx;
+}
+
+.landscape-big-card-block .subtitle {
+  margin-top: 20rpx;
+}

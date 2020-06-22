@@ -1,0 +1,38 @@
+var cardData = function(item) {
+  var mainImageUrl = "";
+  var images = item.goodsImgsArr11;
+  if (images.constructor == 'Array' && images.length>0){
+    mainImageUrl = images[0];
+  }
+  var cardInfo = {
+    "imgurl": mainImageUrl,
+    "title": item.goodsName,
+    "subtitle": '￥' + item.goodsRealPrice/100 + '元',
+  }
+  return cardInfo;
+};
+
+var cardWidth = function(w) {
+  return {
+    "width": w
+  };
+}
+
+var carouselAdapter = function (items) {
+  var carouselData = [];
+  for (var i = 0; i < items.length; i++) {
+    var temp = items[i];
+    var item = {
+      data: temp,
+      imgUrl: temp.goodsImgsArr[0]
+    };
+    carouselData.push(item);
+  }
+  return carouselData;
+}
+
+module.exports = {
+  cardData: cardData,
+  cardWidth: cardWidth,
+  carouselAdapter: carouselAdapter
+};

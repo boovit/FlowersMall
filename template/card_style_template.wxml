@@ -1,0 +1,176 @@
+
+<!-- 优惠券入口 -->
+<template name="CouponReceiveEntry">
+  <view class="coupon-receive-entry-block">
+    <image wx:if="{{type=='all'}}" src='../../images/coupon/cp_pink_bg.png'></image>
+    <image wx:else src='../../images/coupon/cp_yellow_bg.png'></image>
+    <view class='content'>
+      <view class='left'>
+        <text class='flag h4'>￥</text>
+        <text class='price'>{{price/100}}</text>
+      </view>
+      <view class='right'>
+        <text class='desc h5'>{{desc}}</text>
+        <text class='button h6'>立即领取</text>
+      </view>
+    </view>
+  </view>
+</template>
+
+<template name="square_card_feed_view">
+  <view class='square-card-container' style='width:{{width}}vw' data-data="{{data}}" catchtap='squareCardClicked'>
+    <image style='height:{{width}}vw;width:{{width}}vw' mode='aspectFill' src='{{img_url}}'></image>
+    <view class='square-card-text'>
+      <text class='square-card-title h6'>{{title}}</text>
+      <text class='square-card-subtitle h7'>{{subtitle}}</text>
+    </view>
+  </view>
+</template>
+
+<template name="PortraitSquareCard">
+  <view class='portrait-square-card-block'>
+    <image class='poster' src='{{imgurl}}'></image>
+    <text class='title card-title'>{{title}}</text>
+    <text class='subtitle card-price-text'>{{subtitle}}</text>
+  </view>
+</template>
+
+<template name='coupon_card_feed_view'>
+  <view class='coupon-card-container' data-data="{{data}}" catchtap='couponCardClick'>
+    <text>{{couponName}}</text>
+  </view>
+</template>
+
+
+<!--     轮播图 模板       -->
+<template name='CarouselCardTemplate'>
+  <view class='carousel-card-template-block'>
+    <swiper autoplay="true" interval="5000" duration="1000" circular="true" bindchange='carouselChangeHandler'>
+      <block wx:for="{{carouselData}}" wx:key="type" wx:for-index="index">
+        <swiper-item data-data="{{item.data}}" catchtap='carouselItemClicked'>
+          <image class='carousel-image' src="{{item.imgUrl}}" mode="scaleToFill" />
+        </swiper-item>
+      </block>
+    </swiper>
+    <text class='carousel-index' wx:if="{{carouselData.length>1}}">{{current}}/{{carouselData.length}}</text>
+  </view>
+</template>
+
+<!--  订单卡片模板  -----
+{
+  orderId:
+}
+-->
+<template name="OrderCardTemplate">
+  <view class='order-card-template-block'>
+    <view class='header'>
+      <view class='left'>
+        <view class='order-id'>
+          <text class='h6'>订单编号:</text>
+          <text class='h6'>{{orderId}}</text>
+        </view>
+        <view class='order-create-time'>
+          <text class='h6'>创建时间:</text>
+          <text class='h6'>{{orderCreateTime}}</text>
+        </view>
+      </view>
+      <view class='right'>
+        <text class='h4' wx:if='{{status==0}}'>待付款</text>
+        <text class='h4' wx:elif='{{status==1}}'>待发货</text>
+        <text class='h4' wx:elif='{{status==2}}'>已发货</text>
+        <text class='h4' wx:elif='{{status==3}}'>已完成</text>
+        <text class='h4' wx:elif='{{status==4}}'>退款中</text>
+      </view>
+    </view>
+    <view class='content'>
+      <template wx:if='{{goodsList.length <= 1}}' is="OrderGoodsCardTemplate" data="{{...goods}}"></template>
+      <template wx:else is="OrderGoodsListCardTemplate" data="{{...{list:goodsList} }}"></template>
+    </view>
+    <view class='footer'>
+      <view class='content'>
+        <text class='number h5'>共计{{totalNumber}}件商品</text>
+        <text class='total-price h4'>合计:￥{{totalPrice}}</text>
+      </view>
+      <view class='footer-button'>
+        <text class='button h5' id='delete' wx:if='{{status==0}}'>取消订单</text>
+        <text class='button h5' id='delete' wx:elif='{{status==3}}'>删除订单</text>
+        <text class='button h5' id='payment' wx:if='{{status==0}}'>立即支付</text>
+        <!--
+        <text class='button h5' id='tips' wx:elif='{{status==1}}'>提醒发货</text>
+        <text class='button h5' id='confirm' wx:elif='{{status==2}}'>确认收货</text>
+        <text class='button h5' id='rebuy' wx:elif='{{status==3}}'>再次购买</text>
+        -->
+      </view>
+    </view>
+  </view>
+</template>
+
+<!-- 订单商品卡片  -->
+<template name="OrderGoodsCardTemplate">
+  <view class='order-Goods-card-template-block'>
+    <view class='left'>
+      <image src='{{imageUrl}}'></image>
+      <view class='content'>
+        <text class='title h5'>{{title}}</text>
+        <text class='subtitle h5'>{{subtitle}}</text>
+        <text class='number h5'>数量：x{{number}}</text>
+      </view>
+    </view>
+    <view class='right'>
+      <text class='h5'>￥{{price}}</text>
+    </view>
+  </view>
+</template>
+
+<!-- 订单多个商品卡片 支持左右滚动  -->
+<template name="OrderGoodsListCardTemplate">
+  <view class='order-Goods-List-card-template-block'>
+    <scroll-view scroll-x='true'>
+      <block wx:for='{{list}}' wx:key=''>
+        <image src='{{item.imageUrl}}'></image>
+      </block>
+    </scroll-view>
+  </view>
+</template>
+
+<!--   优惠券
+{
+  enableEdite: 是否可以编辑
+  type:优惠类型，eg:满减、叠加
+  status:1未使用、2使用中、3已使用、4已过期
+  price:
+  desc:
+  rule:
+  endtime:
+}
+-->
+<template name="CouponTemplate">
+  <view class='coupon-template-block'>
+    <image wx:if="{{status=='3'}}" src='../../images/coupon/coupon_gray_bg.png'></image>
+    <image wx:elif="{{type=='all'}}" src='../../images/coupon/coupon_pink_bg.png'></image>
+    <image wx:else src='../../images/coupon/coupon_yellow_bg.png'></image>
+    <view class='content'>
+      <view class='left'>
+        <view class='top'>
+          <text class='flag'>￥</text>
+          <text class='price'>{{price/100.0}}</text>
+        </view>
+      </view>
+      <view class='right'>
+        <view class='content'>
+          <text class='desc h5'>·{{desc}}</text>
+          <text class='rule h5'>·{{rule}}</text>
+          <text class='endtime h5'>·{{endtime}}到期</text>
+        </view>
+        <view class='status' wx:if='{{!enableEdite}}'>
+          <text class='h5' wx:if="{{status=='1'}}" id='button'>立即使用</text>
+          <image wx:elif="{{status=='3'}}" src='../../images/coupon/uncollected_flag.png'></image>
+        </view>
+        <view class='edite' wx:else>
+          <image class='selected-icon' src='../../images/unselected.png' wx:if='{{!selected}}'></image>
+    <image class='selected-icon' src='../../images/selected.png' wx:else></image>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

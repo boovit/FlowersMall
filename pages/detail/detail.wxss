@@ -1,0 +1,348 @@
+@import "../../template/page_bottom.wxss";
+@import "../../template/card_style_template.wxss";
+@import "../../css/base.wxss";
+
+.goods-detail {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  margin-bottom: 99rpx;
+}
+
+/***************   轮播图   **************/
+
+.mian-swiper {
+  width: auto;
+  height: auto;
+}
+
+/***************   商品描述   **************/
+
+.goods-desc {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  height: auto;
+  padding: 40rpx 30rpx;
+  border-width: 0 0 1rpx 0;
+  border-color: #f6f6f6;
+  border-style: solid;
+}
+
+.goods-desc>.price-content {
+  display: flex;
+}
+
+.goods-desc>.title {
+  margin-top: 26rpx;
+}
+
+.goods-desc>.promise {
+  margin-top: 26rpx;
+  color: #888;
+}
+
+.goods-desc>.express {
+  margin-top: 10rpx;
+  color: #888;
+}
+
+/***************   领券   **************/
+
+.coupon-block{
+  display: flex;
+  flex-direction: column;
+  border-width: 0 0 30rpx 0;
+  border-color: #f6f6f6;
+  border-style: solid;
+}
+
+.coupon-block .coupon{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: auto;
+  height: 80rpx;
+  padding: 0 30rpx;
+  border-width: 0 0 1rpx 0;
+  border-color: #f6f6f6;
+  border-style: solid;
+}
+
+.coupon-block .coupon>.left {
+  display: flex;
+  align-items: center;
+}
+
+.coupon-block .coupon>.left>.tips {
+  color: #888;
+}
+
+.coupon-block .coupon>.left>.content {
+  color: white;
+  background-color: #ff7b52;
+  margin-left: 30rpx;
+  padding: 7rpx 15rpx;
+}
+
+.coupon-block .coupon>.arrow {
+  width: 48rpx;
+  height: 48rpx;
+  margin-right: 30rpx;
+}
+
+/***************   详情图片   **************/
+
+.detail-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.detail-image image {
+  height: auto;
+  width: 100%;
+}
+
+/***************   底部按钮   **************/
+
+.goods-buy {
+  width: 100%;
+  height: 99rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  border-width: 1rpx 0 0 0;
+  border-color: #e5e5e5;
+  border-style: solid;
+  background-color: white;
+}
+
+.goods-buy>text {
+  color: white;
+  background-color: #ff7b52;
+  width: 690rpx;
+  height: 60rpx;
+  margin: 15rpx 30rpx;
+  border-radius: 10rpx;
+  text-align: center;
+  padding-top: 10rpx;
+}
+
+/***************   SKU 面板   **************/
+.goods-sku-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.goods-sku-block>.shadow {
+  background-color: #2b2b2b;
+  opacity: 0.8;
+  width: 100%;
+  height: auto;
+  z-index: 0;
+  flex-grow:1;
+}
+
+.goods-sku-block>.content {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  width: 100%;
+  height: auto;
+  z-index: 1;
+}
+
+.goods-sku-block .content-header {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin: 0rpx 30rpx 100rpx 30rpx;
+}
+
+.goods-sku-block .header {
+  display: flex;
+  flex-direction: row;
+  margin-top: 40rpx;
+  border-width: 0 0 1rpx 0;
+  border-style: solid;
+  border-color: #f6f6f6;
+  position: relative;
+}
+
+.goods-sku-block .header>image {
+  width: 200rpx;
+  height: 200rpx;
+  top: -57rpx;
+  border-radius: 10rpx;
+  position: relative;
+}
+
+.goods-sku-block .header>.middle {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20rpx;
+}
+
+.goods-sku-block .header>.middle>.title{
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: auto;
+}
+
+.goods-sku-block .header>.middle>.subtitle{
+  color: #888;
+  margin-top: 5rpx;
+}
+
+.goods-sku-block .header>.middle>.price{
+  margin-top: 23rpx;
+}
+
+.goods-sku-block .header>.right {
+  display: flex;
+  position: absolute;
+  top: 0rpx;
+  right: 0rpx;
+  width: auto;
+  height: auto;
+}
+
+.goods-sku-block .header>.right>image {
+  width: 20rpx;
+  height: 20rpx;
+  padding: 0rpx 10rpx 10rpx 10rpx;
+}
+
+/*********    sku 选择     *************/
+.goods-sku-block .body {
+  display: flex;
+  flex-direction: column;
+}
+
+.goods-sku-block .body>.sku-block{
+  display: flex;
+  flex-direction: column;
+}
+
+.goods-sku-block .body>.group {
+  margin: 3vw 0 0 0;
+}
+
+.goods-sku-block .body>.group>.tags {
+  display: flex;
+  margin: 2vw 0 0 15vw;
+}
+
+.goods-sku-block .body>.group>.tags>text {
+  padding: 0.5vw 1vw 0.5vw 1vw;
+  margin-right: 3vw;
+  border-radius: 5rpx;
+  background-color: #f0f0f0;
+}
+
+
+/**********      数量选择      ***********/
+.number-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40rpx 0rpx;
+  border-width: 0 0 1rpx 0;
+  border-color: #f6f6f6;
+  border-style: solid;
+}
+
+.number-block>.compone {
+  display: flex;
+  align-items: center;
+  height: 10vw;
+}
+
+.number-block>.compone>.button-content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 20rpx;
+  background-color: #d6d6d6;
+}
+
+.number-block>.compone .reduce,.plus {
+  color: white;
+}
+
+.number-block>.compone>input {
+  width: 60rpx;
+  text-align: center;
+}
+
+/***************************  确定按钮  ************************/
+.goods-sku-block .content-footer {
+  width: 100%;
+  height: 99rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  border-width: 1rpx 0 0 0;
+  border-color: #e5e5e5;
+  border-style: solid;
+  background-color: white;
+}
+
+.goods-sku-block .content-footer>text {
+  color: white;
+  background-color: #ff7b52;
+  width: 690rpx;
+  height: 60rpx;
+  margin: 15rpx 30rpx;
+  border-radius: 10rpx;
+  text-align: center;
+  padding-top: 10rpx;
+}
+
+
+/***************  sku group *****************/
+.sku-group-template-block{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 30rpx 0;
+  border-width: 0 0 1rpx 0;
+  border-color: #f6f6f6;
+  border-style: solid;
+}
+
+.sku-group-template-block>.sku-group-item{
+  display: flex;
+  flex-flow: wrap;
+  margin-top: 30rpx;
+}
+
+.sku-group-template-block>.sku-group-item text{
+  margin-right: 20rpx;
+  margin-bottom: 20rpx;
+  padding: 12rpx;
+  color: white;
+}
+
+.sku-group-template-block>.sku-group-item .unselected{
+  background-color: #d6d6d6;
+}
+
+.sku-group-template-block>.sku-group-item .selected{
+  background-color: #ff7b52;
+}

@@ -1,0 +1,102 @@
+@import "base_color.wxss";
+@import "base_size.wxss";
+@import "base_style.wxss";
+
+.list-nav-arrow{
+  width: 18rpx;
+  height: 32rpx;
+}
+
+.menu-item-icon{
+  width: 38rpx;
+  height: 38rpx;
+}
+.price-color{
+  color:#E7001C;
+}
+
+.card-title,.card-subtitle,.card-ex-title,.card-price-text,.section-title {
+  font-family: '黑体';
+}
+
+.card-title {
+  color: #353535;
+  font-size: 32rpx;
+  line-height: 32rpx;
+}
+
+.card-subtitle, .card-ex-title {
+  color: #888888;
+  font-size: 26rpx;
+  line-height: 26rpx;
+}
+
+.card-price-text {
+  color: #E7001C;
+  font-size: 26rpx;
+  line-height: 26rpx;
+}
+
+.section-title{
+  color: #353535;
+  font-size: 40rpx;
+  line-height: 40rpx;
+}
+
+.detail-price-text{
+  color: #E7001C;
+  font-size: 48rpx;
+  line-height: 48rpx;
+}
+
+.express-info-text{
+  color: #888888;
+  font-size: 30rpx;
+  line-height: 40rpx;
+}
+
+.h1,.h2,.h3,.h4,.h5{
+  color: #353535;
+}
+
+.h1 {
+  font-size: 40rpx;
+  line-height: 40rpx;
+}
+
+.h2 {
+  font-size: 36rpx;
+  line-height: 36rpx;
+}
+
+.h3 {
+  font-size: 32rpx;
+  line-height: 32rpx;
+}
+
+.h4 {
+  font-size: 30rpx;
+  line-height: 30rpx;
+}
+
+.h5 {
+  font-size: 26rpx;
+  line-height:26rpx
+}
+
+.h6 {
+  font-size: 24rpx;
+  line-height: 24rpx;
+}
+
+.h7 {
+  font-size: 3vw;
+}
+
+.h8 {
+  font-size: 2vw;
+}
+
+.h9 {
+  font-size: 1vw;
+}
